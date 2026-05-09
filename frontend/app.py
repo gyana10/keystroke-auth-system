@@ -428,7 +428,7 @@ elif page == "CSV Authentication":
 
                     predictions = []
 
-                    url = "http://127.0.0.1:8000/predict"
+                    url = "http://backend:10000/predict"
 
                     progress_bar = st.progress(0)
 
