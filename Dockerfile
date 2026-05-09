@@ -6,7 +6,8 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend .
+COPY backend/main.py .
+COPY backend/models ./models
 
 EXPOSE 10000
 
