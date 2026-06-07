@@ -4,10 +4,6 @@ An end-to-end Behavioral Biometrics Authentication Platform that combines Machin
 
 ---
 
-# 🚀 Live Demo
-
-🔗 https://keystroke-app-system-in9vfxa49ttrgjhzpngnaf.streamlit.app/
-
 ---
 
 # 📌 Project Overview

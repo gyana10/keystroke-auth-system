@@ -251,7 +251,7 @@ elif page == "Manual Authentication":
 
                 st.metric(
                     "Confidence Score",
-                    f"{confidence:.2f}"
+                    f"{confidence*100:.2f}%"
                 )
 
             with col3:
