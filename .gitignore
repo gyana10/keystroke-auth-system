@@ -1,0 +1,6 @@
+key/
+dbt311/
+dbt_env/
+venv/
+__pycache__/
+*.pyc
