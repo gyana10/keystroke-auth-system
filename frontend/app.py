@@ -5,15 +5,11 @@ import plotly.express as px
 import random
 from warehouse_metrics import get_metrics
 import plotly.express as px
-
 from warehouse_dashboard import (
     get_user_statistics,
     get_typing_metrics
 )
 
-# =====================================================
-# PAGE CONFIG
-# =====================================================
 
 st.set_page_config(
     page_title="Keystroke Authentication System",
@@ -21,9 +17,6 @@ st.set_page_config(
     page_icon="⌨️"
 )
 
-# =====================================================
-# CUSTOM CSS
-# =====================================================
 
 st.markdown("""
 <style>
@@ -237,6 +230,48 @@ elif page == "Manual Authentication":
             anomaly_score = result["anomaly_score"]
 
             st.success("Authentication Completed!")
+            st.subheader("🔍 Ensemble Explanation")
+
+            ensemble = result.get(
+            "ensemble_explanation",
+              {}
+                  )
+
+            st.write(
+            f"Primary Contributor: {ensemble.get('top_model', 'N/A')}"
+             )
+
+            scores = ensemble.get(
+              "model_scores",
+                 {}
+                 )
+
+            if scores:
+
+               import pandas as pd
+
+               df = pd.DataFrame(
+                list(scores.items()),
+                columns=["Model", "Score"]
+                  )
+
+            st.dataframe(
+        df,
+        use_container_width=True
+    )            
+            import plotly.express as px
+
+            fig = px.bar(
+             df,
+             x="Model",
+             y="Score",
+             title="Model Contributions"
+              )
+
+            st.plotly_chart(
+    fig,
+    use_container_width=True
+)
 
             col1, col2, col3 = st.columns(3)
 
