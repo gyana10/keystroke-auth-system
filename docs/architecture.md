@@ -1,38 +1,99 @@
-User
- │
- ▼
-Streamlit Dashboard
- │
- ▼
-FastAPI Backend
- │
- ▼
-Ensemble ML Models
- │
- ├── Random Forest
- ├── SVM
- ├── Logistic Regression
- └── Meta Model
- │
- ▼
-Isolation Forest
- │
- ▼
-Prediction Result
+```
+                ┌─────────────────────┐
+                │        User         │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │ Streamlit Dashboard │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   FastAPI Backend   │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │ Feature Processing  │
+                │ & Standardization   │
+                └──────────┬──────────┘
+                           │
+                           ▼
+           ┌────────────────────────────────┐
+           │     Stacking Ensemble Model    │
+           └───────────────┬────────────────┘
+                           │
+    ┌──────────────┬──────────────┬──────────────┐
+    ▼              ▼              ▼
+```
 
-Data Pipeline
+┌───────────┐  ┌───────────┐  ┌──────────────┐
+│ Random    │  │    SVM    │  │ Logistic Reg │
+│ Forest    │  │           │  │              │
+└─────┬─────┘  └─────┬─────┘  └──────┬───────┘
+│              │               │
+└──────────────┼───────────────┘
+▼
+┌────────────────┐
+│   Meta Model   │
+│ (Stacking LR)  │
+└───────┬────────┘
+│
+▼
+┌──────────────────────┐
+│ Isolation Forest     │
+│ Anomaly Detection    │
+└──────────┬───────────┘
+│
+┌──────────┴───────────┐
+▼                      ▼
+┌────────────────┐   ┌────────────────────┐
+│ Authentication │   │ Ensemble XAI       │
+│ Decision       │   │ Model Contribution │
+│ Genuine/Suspect│   │ Explanation        │
+└────────┬───────┘   └─────────┬──────────┘
+│                     │
+└──────────┬──────────┘
+▼
+┌────────────────────┐
+│ Prediction Results │
+│ Confidence Score   │
+│ Dashboard Metrics  │
+└────────────────────┘
 
-CSV Dataset
- │
- ▼
-ETL Script
- │
- ▼
-PostgreSQL Warehouse
- │
- ├── raw
- ├── staging
- └── analytics
- │
- ▼
-Analytics Dashboard
+================ DATA PIPELINE =================
+
+```
+  Keystroke Dataset (CSV)
+                │
+                ▼
+      ┌──────────────────┐
+      │   ETL Pipeline   │
+      │ Extract          │
+      │ Transform        │
+      │ Load             │
+      └────────┬─────────┘
+               │
+               ▼
+    ┌───────────────────────┐
+    │ PostgreSQL Warehouse  │
+    └──────────┬────────────┘
+               │
+  ┌────────────┼────────────┐
+  ▼            ▼            ▼
+```
+
+┌────────┐   ┌────────┐   ┌────────────┐
+│  Raw   │   │Staging │   │ Analytics  │
+│ Layer  │   │ Layer  │   │   Layer    │
+└────┬───┘   └────┬───┘   └─────┬──────┘
+│            │             │
+└────────────┼─────────────┘
+▼
+┌──────────────────────┐
+│ Analytics Dashboard  │
+│ User Statistics      │
+│ Typing Metrics       │
+│ Authentication Logs  │
+└──────────────────────┘
